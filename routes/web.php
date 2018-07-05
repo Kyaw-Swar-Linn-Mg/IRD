@@ -12,19 +12,25 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('administrator/dashboard/login');
 });
 
-Auth::routes();
+Route::prefix('administrator/dashboard')->group(function() {
 
-Route::middleware(['auth','admin'])->prefix('admin')->group(function () {
+    Auth::routes();
 
-    Route::get('/','Admin\DashboardController@index')->name('dashboard.index');
+    Route::middleware(['auth', 'admin'])->group(function () {
 
-    Route::get('main',function (){
-        return "hello";
+        Route::get('/', 'Admin\DashboardController@index')->name('dashboard.index');
+
+        Route::resource('users', 'Admin\UserController', ['as' => 'dashboard']);
+
+        Route::resource('category', 'Admin\CategoryController', ['as' => 'dashboard']);
+
+        Route::resource('person', 'Admin\PersonController', ['as' => 'dashboard']);
+
+        Route::resource('subCategory', 'Admin\SubCategoryController', ['as' => 'dashboard']);
+
     });
 
 });
-
-Route::get('/home', 'HomeController@index')->name('home');

@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Admin LTE | Login</title>
+    <title>IRD | Login</title>
     <!-- iCheck -->
     <link rel="stylesheet" href="{{asset('plugins/iCheck/square/blue.css')}}">
     <!-- Bootstrap 3.3.7 -->
@@ -28,7 +28,7 @@
     <div class="login-box">
         <div class="login-logo">
             <a href="/">
-                <b>Admin</b> LTE
+                <b>IRD</b> ADMIN
             </a>
         </div>
         <!-- /.login-logo -->

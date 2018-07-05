@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -10,15 +11,15 @@ use Illuminate\Support\Facades\DB;
 class LoginController extends Controller
 {
     /*
-     |--------------------------------------------------------------------------
-     | Login Controller
-     |--------------------------------------------------------------------------
-     |
-     | This controller handles authenticating users for the application and
-     | redirecting them to your home screen. The controller uses a trait
-     | to conveniently provide its functionality to your applications.
-     |
-     */
+    |--------------------------------------------------------------------------
+    | Login Controller
+    |--------------------------------------------------------------------------
+    |
+    | This controller handles authenticating users for the application and
+    | redirecting them to your home screen. The controller uses a trait
+    | to conveniently provide its functionality to your applications.
+    |
+    */
 
     use AuthenticatesUsers;
 
@@ -27,7 +28,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/administrator/dashboard';
 
     /**
      * Create a new controller instance.
@@ -39,21 +40,14 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    /**
-     * Log the user out of the application.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function logout(Request $request)
     {
         $this->guard()->logout();
 
         $request->session()->invalidate();
 
-        return redirect('/');
+        return redirect('/administrator/dashboard/login');
     }
-
 
     /**
      * The user has been authenticated.
@@ -62,6 +56,7 @@ class LoginController extends Controller
      * @param  mixed  $user
      * @return mixed
      */
+
 
     public function login(Request $request)
     {
@@ -76,25 +71,18 @@ class LoginController extends Controller
             return $this->sendLockoutResponse($request);
         }
 
-        $user_role=DB::table('users')
-            ->select("role")
-            ->where('email',$request['email'])
-            ->first();
-
-        if(!$user_role)
+        $user=DB::table('users')->where('email',$request['email'])->first();
+        if(!$user)
         {
             return $this->sendFailedLoginResponse($request);
         }
-        if ($user_role->role === "admin"){
+        if ($user->role === "admin"){
             if ($this->attemptLogin($request)) {
-                $this->redirectTo="admin";
                 return $this->sendLoginResponse($request);
             }
         }else{
-            if ($this->attemptLogin($request)) {
-                $this->redirectTo="home";
-                return $this->sendLoginResponse($request);
-            }
+
+            return $this->sendFailedLoginResponse($request);
         }
 
         // If the login attempt was unsuccessful we will increment the number of attempts
@@ -104,4 +92,5 @@ class LoginController extends Controller
 
         return $this->sendFailedLoginResponse($request);
     }
+
 }

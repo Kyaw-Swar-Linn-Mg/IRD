@@ -12,23 +12,68 @@
                 <i class="fa fa-circle text-success"></i> Online
             </div>
         </div>
-        <!-- search form -->
-        <form action="#" method="get" class="sidebar-form">
-            <div class="input-group">
-                <input type="text" name="q" class="form-control" placeholder="Search...">
-                <span class="input-group-btn">
-                <button type="submit" name="search" id="search-btn" class="btn btn-flat">
-                  <i class="fa fa-search"></i>
-                </button>
-              </span>
-            </div>
-        </form>
-        <!-- /.search form -->
+
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu" data-widget="tree">
             <li class="header">MAIN NAVIGATION</li>
 
-            <li><a href="{{route('dashboard.index')}}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
+            <li><a href="{{route('dashboard.index')}}"><i class="fa fa-dashboard text-blue"></i> <span>Dashboard</span></a></li>
+
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-users text-gray"></i>
+                    <span>User Management</span>
+                    <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{{route('dashboard.users.index')}}"><i class="fa fa-eye"></i> User List</a></li>
+                    <li><a href="{{route('dashboard.users.create')}}"><i class="fa fa-plus-circle"></i> Add New User</a></li>
+                </ul>
+            </li>
+
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-circle-o text-red"></i>
+                    <span>Person</span>
+                    <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{{route('dashboard.person.index')}}"><i class="fa fa-eye"></i> Person List</a></li>
+                    <li><a href="{{route('dashboard.person.create')}}"><i class="fa fa-plus-circle"></i> Add New Person</a></li>
+                </ul>
+            </li>
+
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-circle-o text-yellow"></i>
+                    <span>Category</span>
+                    <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{{route('dashboard.category.index')}}"><i class="fa fa-eye"></i> Category List</a></li>
+                    <li><a href="{{route('dashboard.category.create')}}"><i class="fa fa-plus-circle"></i> Add New Category</a></li>
+                </ul>
+            </li>
+
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-circle-o text-green"></i>
+                    <span>Sub Category</span>
+                    <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{{route('dashboard.subCategory.index')}}"><i class="fa fa-eye"></i> Sub Category List</a></li>
+                    <li><a href="{{route('dashboard.subCategory.create')}}"><i class="fa fa-plus-circle"></i> Add Sub Category</a></li>
+                </ul>
+            </li>
 
             <li class="treeview">
                 <a href="#">

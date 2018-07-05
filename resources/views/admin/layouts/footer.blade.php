@@ -2,6 +2,5 @@
     <div class="pull-right hidden-xs">
 
     </div>
-    <i>Copyright &copy; {{date('Y')}} </i><b>Admin LTE</b>. All rights
-    reserved.
+    <strong>Copyright &copy; {{date('Y')}} </strong><b>IRD</b>. All rights reserved.
 </footer>
