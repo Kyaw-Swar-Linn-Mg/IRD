@@ -44,16 +44,6 @@
                                     @endif
                                 </div>
 
-                                <div class="form-group{{ $errors->has('state') ? ' has-error' : '' }} has-feedback">
-                                    <label for="state">State</label>
-                                    <input id="state" type="text" class="form-control" name="state" value="{{ $category->state }}" required autofocus>
-                                    @if ($errors->has('state'))
-                                        <span class="help-block">
-                                <strong>{{ $errors->first('state') }}</strong>
-                                     </span>
-                                    @endif
-                                </div>
-
                                 <div class="form-group">
                                     <label>Have Sub Category?</label>
                                     <div class="btn-group" data-toggle="buttons">

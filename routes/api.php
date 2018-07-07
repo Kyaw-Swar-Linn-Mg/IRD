@@ -13,15 +13,11 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::resource('category','Api\CategoryController');
+Route::post('category','Api\CategoryController@getByDate');
 
-Route::resource('person','Api\PersonController');
+Route::post('person','Api\PersonController@getByDate');
 
-Route::get('person/category/{category_id}','Api\PersonController@getPersonByCategory');
-
-Route::get('person/subCategory/{sub_category_id}','Api\PersonController@getPersonBySubCategory');
-
-Route::resource('subCategory','Api\SubCategoryController');
+Route::post('sub_category','Api\SubCategoryController@getByDate');
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();

@@ -28,7 +28,7 @@ class SubCategoryController extends Controller
      */
     public function create()
     {
-        $categories = Category::all();
+        $categories = Category::where('sub_category',true)->where('state','<>',"delete")->get();
         return view('admin.subCategory.create',compact('categories'));
     }
 
@@ -41,6 +41,7 @@ class SubCategoryController extends Controller
     public function store(SubCategoryRequest $request)
     {
         $input = $request->validated();
+        $input['state'] = "new";
         SubCategory::create($input);
 
         return redirect()
@@ -67,7 +68,7 @@ class SubCategoryController extends Controller
      */
     public function edit(SubCategory $subCategory)
     {
-        $categories = Category::all();
+        $categories = Category::where('sub_category',true)->where('state','<>',"delete")->get();
         return view('admin.subCategory.edit',compact('subCategory','categories'));
     }
 
@@ -81,7 +82,7 @@ class SubCategoryController extends Controller
     public function update(Request $request, SubCategory $subCategory)
     {
         $subCategory->name = $request->name ? $request->name : $subCategory->name;
-        $subCategory->state = $request->state ? $request->state : $subCategory->state;
+        $subCategory->state = "update";
         $subCategory->category_id = $request->category_id ? $request->category_id : $subCategory->category_id;
         $subCategory->update();
 
@@ -98,7 +99,8 @@ class SubCategoryController extends Controller
      */
     public function destroy(SubCategory $subCategory)
     {
-        $subCategory->delete();
+        $subCategory->state = "delete";
+        $subCategory->update();
         return redirect()->route('dashboard.subCategory.index')
         ->with('flash', 'Successfully deleted!');
     }

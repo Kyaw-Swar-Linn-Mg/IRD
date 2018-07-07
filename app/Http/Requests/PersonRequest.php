@@ -28,7 +28,6 @@ class PersonRequest extends FormRequest
             'position' => 'required',
             'office_phone' => 'required',
             'hand_phone' => 'required',
-            'state' => 'required',
             'category_id' => 'required',
             'sub_category_id' => 'required',
         ];

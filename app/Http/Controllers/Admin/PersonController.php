@@ -8,6 +8,7 @@ use App\Person;
 use App\SubCategory;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Input;
 
 class PersonController extends Controller
 {
@@ -29,8 +30,8 @@ class PersonController extends Controller
      */
     public function create()
     {
-        $categories = Category::all();
-        $subCategories = SubCategory::all();
+        $categories = Category::where('sub_category',true)->where('state','<>',"delete")->get();
+        $subCategories = SubCategory::where('state','<>',"delete")->get();
         return view('admin.person.create',compact('categories','subCategories'));
     }
 
@@ -43,6 +44,7 @@ class PersonController extends Controller
     public function store(PersonRequest $request)
     {
         $inputs = $request->validated();
+        $inputs['state'] = "new";
         Person::create($inputs);
 
         return redirect()
@@ -69,8 +71,8 @@ class PersonController extends Controller
      */
     public function edit(Person $person)
     {
-        $categories = Category::all();
-        $subCategories = SubCategory::all();
+        $categories = Category::where('sub_category',true)->where('state','<>',"delete")->get();
+        $subCategories = SubCategory::where('state','<>',"delete")->get();
         return view('admin.person.edit',compact('person','categories','subCategories'));
     }
 
@@ -87,7 +89,7 @@ class PersonController extends Controller
         $person->position = $request->position ? $request->position : $person->position;
         $person->office_phone = $request->office_phone ? $request->office_phone : $person->office_phone;
         $person->hand_phone = $request->hand_phone ? $request->hand_phone : $person->hand_phone;
-        $person->state = $request->state ? $request->state : $person->state;
+        $person->state = "update";
         $person->category_id = $request->category_id ? $request->category_id : $person->category_id;
         $person->sub_category_id = $request->sub_category_id ? $request->sub_category_id : $person->sub_category_id;
         $person->update();
@@ -105,10 +107,16 @@ class PersonController extends Controller
      */
     public function destroy(Person $person)
     {
-        $person->delete();
+        $person->state = "delete";
+        $person->update();
 
         return redirect()
             ->route('dashboard.person.index')
             ->with('flash', 'Successfully removed!');
+    }
+
+    public function getSubCategory(Request $request){
+        $subCategory = SubCategory::where('category_id',$request->category_id)->get();
+        return response()->json($subCategory);
     }
 }

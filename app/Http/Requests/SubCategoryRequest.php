@@ -25,7 +25,6 @@ class SubCategoryRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'state' => 'required',
             'category_id' => 'required',
         ];
     }

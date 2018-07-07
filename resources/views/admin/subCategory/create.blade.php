@@ -43,17 +43,6 @@
                             @endif
                         </div>
 
-                        <div class="form-group{{ $errors->has('state') ? ' has-error' : '' }} has-feedback">
-                            <label for="state">State</label>
-                            <input id="state" type="text" class="form-control" name="state" value="{{ old('state') }}" required autofocus>
-                            @if ($errors->has('state'))
-                                <span class="help-block">
-                                <strong>{{ $errors->first('state') }}</strong>
-                            </span>
-                            @endif
-                        </div>
-
-
                         <div class="form-group {{ $errors->has('category_id') ? ' has-error' : '' }} ">
                             <label for="category_id">Select Category</label>
                             <select id="category_id" name="category_id" class="select2 form-control" style="width: 100%;" required tabindex="-1" aria-hidden="true">

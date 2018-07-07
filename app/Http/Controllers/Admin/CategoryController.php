@@ -39,6 +39,7 @@ class CategoryController extends Controller
     public function store(CategoryRequest $request)
     {
         $inputs = $request->validated();
+        $inputs['state'] = "new";
         Category::create($inputs);
 
         return redirect()
@@ -78,7 +79,7 @@ class CategoryController extends Controller
     public function update(Request $request, category $category)
     {
         $category->name = $request->name ? $request->name : $category->name;
-        $category->state = $request->state ? $request->state : $category->state;
+        $category->state = "update";
         $category->sub_category = $request->sub_category === "1" ? true : false;
         $category->update();
 
@@ -95,7 +96,8 @@ class CategoryController extends Controller
      */
     public function destroy(category $category)
     {
-        $category->delete();
+        $category->state = "delete";
+        $category->update();
         return redirect()->route('dashboard.category.index')
             ->with('flash', 'Successfully deleted!');
     }
