@@ -15,7 +15,7 @@ class SubCategoryController extends Controller
             $data = SubCategory::orderBy('id','desc')->get();
         }
         else{
-            $data = [];
+            $data = SubCategory::where('updated_at','>',$request->date)->get();
         }
         return response()->json([
             'data'=>$data

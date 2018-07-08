@@ -15,7 +15,7 @@ class PersonController extends Controller
             $data = Person::orderBy('id','desc')->get();
         }
         else{
-            $data = [];
+            $data = Person::where('updated_at','>',$request->date)->get();
         }
         return response()->json([
             'data'=>$data
