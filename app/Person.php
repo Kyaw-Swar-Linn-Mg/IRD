@@ -18,7 +18,7 @@ class Person extends Model
         return $this->belongsTo(SubCategory::class,'sub_category_id','id');
     }
 
-    public function position()
+    public function personPosition()
     {
         return $this->belongsTo(Position::class,'position_id','id');
     }

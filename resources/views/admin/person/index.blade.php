@@ -52,7 +52,7 @@
                         <tr>
                             <td>{{$index}}</td>
                             <td>{{$person->name}}</td>
-                            <td>{{$person->position['name']}}</td>
+                            <td>{{$person->personPosition['name']}}</td>
                             <td>{{$person->office_phone}}</td>
                             <td>{{$person->hand_phone}}</td>
                             <td>{{$person->state}}</td>

@@ -12,11 +12,18 @@ class PersonController extends Controller
     {
         if($request->date == 0)
         {
-            $data = Person::orderBy('id','desc')->get();
+            $person = Person::orderBy('id','desc')->get();
         }
         else{
-            $data = Person::where('updated_at','>',$request->date)->get();
+            $person = Person::where('updated_at','>',$request->date)->get();
         }
+
+        $data = $person;
+        foreach ($person as $item)
+        {
+            $item['position'] = $item->personPosition['name'];
+        }
+
         return response()->json([
             'data'=>$data
         ],200);
