@@ -1,7 +1,7 @@
 @extends('admin.layouts.master')
 
 @section('title')
-    Person List
+    Position List
 @stop
 
 @section ('style')
@@ -12,11 +12,11 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Person List
+            Position List
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li class="active">Person List</li>
+            <li class="active">Position List</li>
         </ol>
     </section>
 
@@ -37,30 +37,18 @@
                     <tr>
                         <th>#</th>
                         <th>Name</th>
-                        <th>Position</th>
-                        <th>Office Phone</th>
-                        <th>Hand Phone</th>
-                        <th>State</th>
-                        <th>Category</th>
-                        <th>Sub Category</th>
                         <th>Action</th>
                     </tr>
                     </thead>
                     <tbody>
                     <?php $index=1; ?>
-                    @foreach($people as $person)
+                    @foreach($positions as $position)
                         <tr>
                             <td>{{$index}}</td>
-                            <td>{{$person->name}}</td>
-                            <td>{{$person->position['name']}}</td>
-                            <td>{{$person->office_phone}}</td>
-                            <td>{{$person->hand_phone}}</td>
-                            <td>{{$person->state}}</td>
-                            <td>{{$person->category->name}}</td>
-                            <td>{{$person->subCategory->name}}</td>
+                            <td>{{$position->name}}</td>
                             <td>
-                                <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal_{{$person->id}}"><span class="fa fa-trash"></span></button>
-                                <a class="btn btn-primary btn-sm" href="{{route('dashboard.person.edit',['id'=>$person->id])}}"><span class="fa fa-edit"></span></a>
+                                <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal_{{$position->id}}"><span class="fa fa-trash"></span></button>
+                                <a class="btn btn-primary btn-sm" href="{{route('dashboard.position.edit',['id'=>$position->id])}}"><span class="fa fa-edit"></span></a>
                             </td>
                         </tr>
                         <?php $index++ ?>
@@ -71,9 +59,9 @@
             </div>
         </div>
 
-    @foreach($people as $person)
+    @foreach($positions as $position)
         <!-- Delete Confirm Modal -->
-            <div class="modal fade" id="modal_{{$person->id}}" tabindex="-1" role="dialog" aria-labelledby="alert_ModalLabel">
+            <div class="modal fade" id="modal_{{$position->id}}" tabindex="-1" role="dialog" aria-labelledby="alert_ModalLabel">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -84,7 +72,7 @@
                             Are you sure want to delete?
                         </div>
                         <div class="modal-footer">
-                            <form action="{{ route('dashboard.person.destroy', $person->id) }}" method="POST"
+                            <form action="{{ route('dashboard.position.destroy', $position->id) }}" method="POST"
                                   style="display: inline;">
 
                                 {{ csrf_field() }}

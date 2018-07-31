@@ -45,12 +45,16 @@
                                 </div>
 
 
-                                <div class="form-group{{ $errors->has('position') ? ' has-error' : '' }} has-feedback">
-                                    <label for="position">Position</label>
-                                    <input id="position" type="text" class="form-control" name="position" value="{{ $person->position }}" required autofocus>
-                                    @if ($errors->has('position'))
+                                <div class="form-group{{ $errors->has('position_id') ? ' has-error' : '' }} has-feedback">
+                                    <label for="position_id">Select Position</label>
+                                    <select id="position_id" class="form-control" name="position_id"required>
+                                        @foreach($positions as $position)
+                                            <option value="{{$position->id}}" @if($person->position_id ==  $position->id) selected @endif>{{$position->name}}</option>
+                                        @endforeach
+                                    </select>
+                                    @if ($errors->has('position_id'))
                                         <span class="help-block">
-                                            <strong>{{ $errors->first('position') }}</strong>
+                                            <strong>{{ $errors->first('position_id') }}</strong>
                                         </span>
                                     @endif
                                 </div>

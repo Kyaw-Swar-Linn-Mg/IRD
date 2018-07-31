@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Person extends Model
 {
-    protected $fillable = ['name','position','office_phone','hand_phone','state','category_id','sub_category_id'];
+    protected $fillable = ['name','position_id','office_phone','hand_phone','state','category_id','sub_category_id'];
 
     public function category()
     {
@@ -17,4 +17,10 @@ class Person extends Model
     {
         return $this->belongsTo(SubCategory::class,'sub_category_id','id');
     }
+
+    public function position()
+    {
+        return $this->belongsTo(Position::class,'position_id','id');
+    }
+
 }

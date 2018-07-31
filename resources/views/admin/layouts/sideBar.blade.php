@@ -77,6 +77,20 @@
 
             <li class="treeview">
                 <a href="#">
+                    <i class="fa fa-circle-o text-white"></i>
+                    <span>Position</span>
+                    <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{{route('dashboard.position.index')}}"><i class="fa fa-eye"></i> Position List</a></li>
+                    <li><a href="{{route('dashboard.position.create')}}"><i class="fa fa-plus-circle"></i> Add Position</a></li>
+                </ul>
+            </li>
+
+            <li class="treeview">
+                <a href="#">
                     <i class="fa fa-gears"></i>
                     <span>Settings</span>
                     <span class="pull-right-container">

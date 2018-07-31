@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Category;
 use App\Http\Requests\PersonRequest;
 use App\Person;
+use App\Position;
 use App\SubCategory;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -32,7 +33,8 @@ class PersonController extends Controller
     {
         $categories = Category::where('sub_category',true)->where('state','<>',"delete")->get();
         $subCategories = SubCategory::where('state','<>',"delete")->get();
-        return view('admin.person.create',compact('categories','subCategories'));
+        $positions = Position::all();
+        return view('admin.person.create',compact('categories','subCategories','positions'));
     }
 
     /**
@@ -73,7 +75,8 @@ class PersonController extends Controller
     {
         $categories = Category::where('sub_category',true)->where('state','<>',"delete")->get();
         $subCategories = SubCategory::where('state','<>',"delete")->get();
-        return view('admin.person.edit',compact('person','categories','subCategories'));
+        $positions = Position::all();
+        return view('admin.person.edit',compact('person','categories','subCategories','positions'));
     }
 
     /**
@@ -86,7 +89,7 @@ class PersonController extends Controller
     public function update(Request $request, Person $person)
     {
         $person->name = $request->name ? $request->name : $person->name;
-        $person->position = $request->position ? $request->position : $person->position;
+        $person->position_id = $request->position_id ? $request->position_id : $person->position_id;
         $person->office_phone = $request->office_phone ? $request->office_phone : $person->office_phone;
         $person->hand_phone = $request->hand_phone ? $request->hand_phone : $person->hand_phone;
         $person->state = "update";
