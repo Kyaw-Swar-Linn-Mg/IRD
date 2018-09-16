@@ -34,12 +34,8 @@ Route::prefix('administrator/dashboard')->group(function() {
         Route::get('/getSubCategory','Admin\PersonController@getSubCategory');
 
         Route::resource('position', 'Admin\PositionController', ['as' => 'dashboard']);
-
-<<<<<<< HEAD
+        
         Route::resource('asdfasdf', 'Admin\TestController', ['as' => 'dashboard']);
-
-=======
->>>>>>> newfeature
     });
 
 });
