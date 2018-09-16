@@ -35,8 +35,11 @@ Route::prefix('administrator/dashboard')->group(function() {
 
         Route::resource('position', 'Admin\PositionController', ['as' => 'dashboard']);
 
+<<<<<<< HEAD
         Route::resource('asdfasdf', 'Admin\TestController', ['as' => 'dashboard']);
 
+=======
+>>>>>>> newfeature
     });
 
 });
