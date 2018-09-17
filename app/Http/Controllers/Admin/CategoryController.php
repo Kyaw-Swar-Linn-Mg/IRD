@@ -79,7 +79,7 @@ class CategoryController extends Controller
     public function update(Request $request, category $category)
     {
         $category->name = $request->name ? $request->name : $category->name;
-        $category->state = "update";
+        $category->state = "updat";
         $category->sub_category = $request->sub_category === "1" ? true : false;
         $category->update();
 
